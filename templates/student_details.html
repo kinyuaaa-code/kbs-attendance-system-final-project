@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Student Details: {{ student.name }}</h4>
+    </div>
+    <div class="card-body">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <p><strong>Name:</strong> {{ student.name }}</p>
+                <p><strong>Roll Number:</strong> {{ student.roll_number }}</p>
+                <p><strong>Registered:</strong> {{ student.created_at.strftime('%Y-%m-%d') if student.created_at else 'N/A' }}</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Total Classes:</strong> {{ attendance_records|length }}</p>
+                <p><strong>Overall Attendance:</strong> 
+                    <span class="attendance-percentage {% if attendance_percentage >= 75 %}percentage-high{% else %}percentage-low{% endif %}">
+                        {{ attendance_percentage }}%
+                    </span>
+                </p>
+            </div>
+        </div>
+        
+        <h5>Attendance History</h5>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Marked On</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in attendance_records %}
+                    <tr>
+                        <td>{{ record.date }}</td>
+                        <td>
+                            <span class="badge {% if record.status == 'Present' %}bg-success{% elif record.status == 'Absent' %}bg-danger{% else %}bg-warning{% endif %}">
+                                {{ record.status }}
+                            </span>
+                        </td>
+                        <td>{{ record.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="3" class="text-center">No attendance records found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <a href="/students" class="btn btn-secondary">Back to Students</a>
+        <a href="/mark_attendance" class="btn btn-primary">Mark New Attendance</a>
+    </div>
+</div>
+{% endblock %}

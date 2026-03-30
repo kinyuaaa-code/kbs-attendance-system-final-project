@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-warning">
+                <h4 class="mb-0">Check Attendance Requirements</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="student_id" class="form-label">Select Student</label>
+                        <select class="form-select" id="student_id" name="student_id" required>
+                            <option value="">Choose a student...</option>
+                            {% for student in students %}
+                            <option value="{{ student.id }}">{{ student.name }} ({{ student.roll_number }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="min_percentage" class="form-label">Minimum Required Percentage (%)</label>
+                        <input type="number" class="form-control" id="min_percentage" name="min_percentage" 
+                               value="75" min="0" max="100" step="0.5">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-warning">Check Requirement</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    {% if result %}
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0">Result</h4>
+            </div>
+            <div class="card-body">
+                <h5>{{ result.student.name }} ({{ result.student.roll_number }})</h5>
+                <hr>
+                <p><strong>Total Classes:</strong> {{ result.total_classes }}</p>
+                <p><strong>Present:</strong> {{ result.present_count }}</p>
+                <p><strong>Attendance Percentage:</strong> 
+                    <span class="attendance-percentage {% if result.attendance_percentage >= result.minimum_required %}percentage-high{% else %}percentage-low{% endif %}">
+                        {{ result.attendance_percentage }}%
+                    </span>
+                </p>
+                <p><strong>Minimum Required:</strong> {{ result.minimum_required }}%</p>
+                
+                <div class="alert {% if result.meets_requirement %}alert-success{% else %}alert-danger{% endif %} mt-3">
+                    <strong>{% if result.meets_requirement %}✓{% else %}✗{% endif %}</strong>
+                    {% if result.meets_requirement %}
+                        This student meets the attendance requirement!
+                    {% else %}
+                        This student does NOT meet the attendance requirement. 
+                        They need to improve attendance by {{ (result.minimum_required - result.attendance_percentage)|round(2) }}%.
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h1 class="display-4">Automated Student Attendance System</h1>
+        <p class="lead">Track student attendance and ensure they meet requirements</p>
+        <hr class="my-4">
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-3 mb-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">📝 Manage Students</h5>
+                <p class="card-text">Add new students and manage existing records</p>
+                <a href="/students" class="btn btn-primary">Go to Students</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3 mb-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">✓ Mark Attendance</h5>
+                <p class="card-text">Record daily attendance for students</p>
+                <a href="/mark_attendance" class="btn btn-primary">Mark Attendance</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3 mb-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">📊 View Reports</h5>
+                <p class="card-text">View comprehensive attendance reports</p>
+                <a href="/attendance_report" class="btn btn-primary">View Reports</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3 mb-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">✅ Check Requirements</h5>
+                <p class="card-text">Verify if students meet attendance criteria</p>
+                <a href="/check_attendance" class="btn btn-primary">Check Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">📋 System Features</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">✓ Student registration with unique roll numbers</li>
+                    <li class="list-group-item">✓ Daily attendance marking (Present/Absent/Late)</li>
+                    <li class="list-group-item">✓ Automatic attendance percentage calculation</li>
+                    <li class="list-group-item">✓ Rule-based logic to check minimum attendance requirements</li>
+                    <li class="list-group-item">✓ Comprehensive attendance reports</li>
+                    <li class="list-group-item">✓ Individual student attendance history</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

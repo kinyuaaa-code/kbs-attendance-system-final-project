@@ -1,0 +1,62 @@
+/* Custom styles */
+.attendance-percentage {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.percentage-high {
+    color: #28a745;
+}
+
+.percentage-low {
+    color: #dc3545;
+}
+
+.card {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.table-responsive {
+    margin-top: 20px;
+}
+
+.btn {
+    margin-right: 5px;
+}
+
+.badge {
+    font-size: 0.9em;
+    padding: 5px 10px;
+}
+
+.modal-content {
+    border-radius: 10px;
+}
+
+/* Dashboard cards */
+.card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Flash messages */
+.alert {
+    border-radius: 10px;
+    animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
