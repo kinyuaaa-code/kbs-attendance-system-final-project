@@ -148,4 +148,7 @@ def student_details(student_id):
                          attendance_percentage=round(attendance_percentage, 2))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    import os
+    port = int(os.environ.get('PORT', 5000))
+    # Use 0.0.0.0 to accept external connections
+    app.run(host='0.0.0.0', port=port, debug=False)  # debug=False for production
